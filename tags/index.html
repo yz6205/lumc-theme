@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="icon" type="images/png" href="/images/favicon.png">
+  <script src="/js/element.js"></script>
+  <title> Tags - [{YAMLGET info title}] </title>
+</head>
+
+<body>
+  <div class="content">
+    <div class="sidebar" id="sidebar">
+      [{OPEN theme/sidebar/tags.html}]
+    </div>
+    <div class="art-list-container">
+      <ul class="art-list">
+
+<{%tag% [{GET TAG_LIST}]}>
+<{
+
+<a href="/tags/%tag%/">
+  <li class="list-item art-list-item" style="display: flex; justify-content: space-between;">
+    <div class="list-item-title" style="font-family: 'ZCOOL XiaoWei'; font-size: 22px;">
+      %tag%
+    </div>
+  </li>
+</a>
+
+}>
+
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    drawSaying()
+  </script>
+</body>
+
+</html>

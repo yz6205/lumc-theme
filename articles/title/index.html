@@ -1,0 +1,9 @@
+[{YAMLSET art_info [{MDHEAD hint [{OPEN source/articles/[{GET title}]/index.md}]}]}]
+
+[{YAMLSET conf_map [{OPEN theme/articles/title/map.yaml}]}]
+[{SET trait 
+  [{YAMLGET conf_map encrypt | 
+    [{YAMLGET art_info encrypt}]
+  }]
+}]
+[{OPEN theme/articles/title/art[{GET trait}].html}]

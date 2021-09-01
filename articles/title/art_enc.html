@@ -1,0 +1,84 @@
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/art.css">
+  <link rel="icon" type="images/png" href="/images/favicon.png">
+  <script src="/js/element.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
+  <script src="/js/crypto-js.min.js"></script>
+</head>
+
+<body>
+  <script>
+    window.onload = function() {
+      hljs.configure({ tabReplace: '  ' });
+      drawSaying();
+    }
+  </script>
+
+  <div class="content">
+    <div class="sidebar" id="sidebar">
+      [{OPEN theme/sidebar/articles.html}]
+    </div>
+
+    <div class="post" id="post">
+
+      <title> 被加密的文章 - [{YAMLGET info title}] </title>
+
+      [{SET PASSWORD_HINT [{YAMLGET art_info hint}] }]
+      [{SET PASSWORD_SEED [{YAMLGET art_info password}] }]
+      [{SET PASSWORD [{GENPASSWD [{GET PASSWORD_SEED}] }] }]
+
+      [{SET CRYPT_CONTENT
+        [{AES [{GET PASSWORD}]
+          <title> [{YAMLGET art_info title}] - [{YAMLGET info title}] </title>
+          [{MD [{OPEN source/articles/[{GET title}]/index.md}]}]
+        }]
+      }]
+      
+      [{NULL LOG theme note: article '[{GET title}]' is encrypted}]
+
+      <h2> 被加密的内容 </h2>
+
+      <form onsubmit="verify()">
+        <span> 输入密码以查看：</span>
+        <input class="underline-input" id="password" type="password">
+        <input class="gradual-button" type="submit" value="submit">
+        <br/>
+        <span> 提示： [{GET PASSWORD_HINT}] </span>
+      </form>
+
+      <script>
+        passwdMd5 = "[{MD5 [{GET PASSWORD}]}]"
+        encryptedBlog = "[{GET CRYPT_CONTENT}]"
+
+        function verify() {
+          let passwd = document.getElementById("password").value
+          if (passwd == "") {
+            alert("please enter password!")
+            return
+          }
+          passwd = CryptoJS.MD5(passwd).toString().substr(0,16)
+          if (CryptoJS.MD5(passwd).toString() !== passwdMd5) {
+            alert("password incorret")
+            return
+          }
+          let key = CryptoJS.enc.Utf8.parse(passwd)
+          decrypted = CryptoJS.AES.decrypt(encryptedBlog, key, {
+            iv: key,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+          })
+          decrypted = CryptoJS.enc.Utf8.stringify(decrypted)
+          let DOMPost = document.getElementById("post")
+          DOMPost.innerHTML = decrypted
+
+          loadMath()
+          hljs.initHighlighting()
+        }
+      </script>
+    </div>
+
+  </div>
+</body>

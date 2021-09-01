@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/art.css">
+  <link rel="icon" type="images/png" href="/images/favicon.png">
+  <script src="/js/element.js"></script>
+  <title> [{YAMLGET info title}] </title>
+</head>
+
+<body>
+
+<div class="content">
+  <div class="sidebar" id="sidebar">
+    [{OPEN theme/sidebar/home.html}]
+  </div>
+  <div class="post" id="post">
+    [{MD [{OPEN source/index.md}]}]
+    [{OPEN source/footer.html}]
+  </div>
+
+  <script>
+    drawSaying()
+  </script>
+</div>
+</body>
+
+</html>

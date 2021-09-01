@@ -1,0 +1,39 @@
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/art.css">
+  <link rel="icon" type="images/png" href="/images/favicon.png">
+  <script src="/js/element.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
+  <title>
+    [{YAMLGET art_info title}] - [{YAMLGET info title}]
+  </title>
+</head>
+
+<body>
+  <script>
+    window.onload = function() {
+      loadMath();
+      drawSaying();
+      hljs.configure({ tabReplace: '  ' });
+      hljs.initHighlighting()
+    }
+  </script>
+
+  <div class="content">
+    <div class="sidebar" id="sidebar">
+      [{OPEN theme/sidebar/articles.html}]
+    </div>
+
+    <div class="post" id="post">
+
+      [{MD [{OPEN source/articles/[{GET title}]/index.md}]}]
+      [{OPEN source/footer.html}]
+
+    </div>
+
+  </div>
+</body>
+
+[{SH cp -r "source/articles/[{GET title}]/" "public/articles/" }]

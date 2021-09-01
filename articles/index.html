@@ -1,0 +1,44 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="icon" type="images/png" href="/images/favicon.png">
+  <script src="/js/element.js"></script>
+  <title> Articles - [{YAMLGET info title}] </title>
+</head>
+
+<body>
+  <div class="content">
+    <div class="sidebar" id="sidebar">
+      [{OPEN theme/sidebar/articles.html}]
+    </div>
+    <div class="art-list-container">
+      <ul class="art-list">
+
+<{%title% [{YAMLGET artlist art}]}>
+<{
+[{YAMLSET art_info [{MDHEAD [{OPEN source/articles/%title%/index.md}]}]}]
+<a href="/articles/%title%/">
+  <li class="list-item art-list-item" style="display: flex; justify-content: space-between;">
+    <div class="list-item-title" style="font-family: 'ZCOOL XiaoWei'; font-size: 22px;">
+      [{YAMLGET art_info title}]
+    </div>
+    <div class="list-item-tag">
+      [{YAMLGET art_info tags}]
+    </div>
+  </li>
+</a>
+
+}>
+
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    drawSaying()
+  </script>
+</body>
+
+</html>

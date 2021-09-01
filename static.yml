@@ -1,0 +1,16 @@
+static:
+  css0:
+    src:  theme/static/css/main.css
+    dest: public/css/main.css
+  css1:
+    src:  theme/static/css/art.css
+    dest: public/css/art.css
+  css2:
+    src:  theme/static/css/font.css
+    dest: public/css/font.css
+  js0:
+    src:  theme/static/js/element.js
+    dest: public/js/element.js
+  js1:
+    src:  theme/static/js/crypto-js.min.js
+    dest: public/js/crypto-js.min.js

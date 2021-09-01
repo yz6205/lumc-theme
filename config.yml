@@ -1,0 +1,20 @@
+# blog title
+title: <Your Blog Name>
+
+# github/gitee repo url
+repo: <You repo url>
+
+# my links
+# eg Github: https://github.com/coderoj
+me:
+  <Name>: <url>
+
+# friend links
+# eg: DPair: https://www.luogu.com.cn/blog/DPair2005/#
+friend:
+  <Name>: <url>
+
+static:
+  <Item>:
+    src: <source>
+    dest: <destination>
