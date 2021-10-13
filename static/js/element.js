@@ -1,6 +1,6 @@
 function drawSaying() {
   const xhr = new XMLHttpRequest()
-  xhr.open('GET','https://v1.hitokoto.cn/?c=a',true)
+  xhr.open('GET','https://v1.hitokoto.cn/',true)
   xhr.onreadystatechange = function () {
     if(xhr.readyState == 4 && xhr.status == 200) {
       let res = JSON.parse( xhr.responseText )
